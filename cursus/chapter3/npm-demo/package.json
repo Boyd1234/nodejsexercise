@@ -1,0 +1,16 @@
+{
+  "name": "npm-demo",
+  "version": "1.0.0",
+  "description": "My first npm project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Boyd Bulcaen",
+  "license": "ISC",
+  "keywords": [],
+  "dependencies": {
+    "package": "^1.0.1",
+    "underscore": "^1.13.7"
+  }
+}

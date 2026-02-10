@@ -1,0 +1,11 @@
+{
+  "name": "@boydbulcaen/vives-lib",
+  "version": "1.0.0",
+  "description": "chapter3 project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Boyd Bulcaen",
+  "license": "ISC"
+}
