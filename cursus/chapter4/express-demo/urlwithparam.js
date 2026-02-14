@@ -4,6 +4,18 @@ const app = express();
 //nodig voor middleware
 app.use(express.json());
 
+//voor HTML forms die data posten.
+app.use(express.urlencoded({ extended: true }));
+
+//Serve CSS, JavaScript, images, and other static assets:
+//je kanr gwn meerdere onder elk zetten
+// de /public staat niet in je url
+app.use(express.static('public'));
+
+//dit kan ook, ds ist bij /static da et ga werken
+app.use('/static', express.static('public'));
+
+
 const courses = [
     { id: 1, name: 'course1' },
     { id: 2, name: 'course2' },
@@ -161,7 +173,7 @@ app.delete('/api/courses/:id', (req, res) => {
 //     console.log('listening');
 // });
 
-//BETERE VERSIE
+//BETERE VERSIE VOOR PORT
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
     console.log(`Listening on port ${port}...`);
