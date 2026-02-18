@@ -59,13 +59,15 @@ async function getCourses(){
         .sort({name:1})
         //select alleen de velden naam en tags
         //excluden kan ook, bv name:0
-        .select({name: 1, tags:1})
+        // .select({name: 1, tags:1, author:1})
     console.log(courses);
 }
 async function run(){
     const courses = await getCourses();
     console.log(courses);
 }
+
+run();
 
 //operators
 // const courses = await Course
@@ -82,3 +84,93 @@ async function run(){
 //ends with: /letters$/
 // /blabla$/i ==> case insensitive
 //contains /*letters*/
+
+
+//=======================================================
+//=======================================================
+//=======================================================
+//MODIFY
+async function updateCourse(id){
+    try{
+    const course = await Course.findById(id);
+
+    if(!course) return;
+
+    // course.isPublished = true;
+    // course.author = 'modified';
+
+    course.set({
+        isPublished: true,
+        author: 'Switched'
+    });
+
+    const result = await course.save();
+
+    console.log(result);
+} catch (err){
+    console.error('error: ', err.message);
+}
+}
+
+// updateCourse('699356f8306159be3785e296')
+
+async function updateCourse2(id) {
+    const course = await Course.findByIdAndUpdate(id, {
+        $set: {
+            author: 'Jack',
+            isPublished: true
+        }
+    }, { new: true }); //belangrijk
+    console.log(course);
+}
+updateCourse2('6993567e22b62f1936c25e08');
+
+// // Set values
+// { $set: { author: 'John', isPublished: true } }
+
+// // Increment price by 5
+// { $inc: { price: 5 } }
+
+// // Add tag to array
+// { $push: { tags: 'javascript' } }
+
+// // Remove tag from array
+// { $pull: { tags: 'angular' } }
+
+// // Update many documents
+// Course.updateMany({ filter }, { update })
+
+// // Update one document
+// Course.updateOne({ filter }, { update })
+
+// // Find and update, return document
+// Course.findByIdAndUpdate(id, { update })
+// Course.findOneAndUpdate({ filter }, { update })
+
+// // Query first approach
+// const doc = await Course.findById(id);
+// doc.property = value;
+// await doc.save();
+
+
+//=======================================================
+//=======================================================
+//=======================================================
+//DELETE
+async function removeCourse(id) {
+    try{
+    const result = await Course.findByIdAndDelete(id);
+
+    if(!result){
+        console.log('not found');
+        return;
+    }
+
+    console.log('delete course: ', result.name)
+
+    } catch (err){
+         console.error('error deleting course:', err.message);
+    }
+}
+
+removeCourse('6993567e22b62f1936c25e07');

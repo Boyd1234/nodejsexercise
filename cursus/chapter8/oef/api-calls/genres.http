@@ -1,0 +1,31 @@
+### Variables
+@hostname = http://localhost
+@port = 3000
+@host = {{hostname}}:{{port}}
+@contentType = application/json
+@url = {{host}}
+
+### Get all genres
+GET {{url}}
+
+### Create a new genre
+POST {{url}}
+Content-Type: {{contentType}}
+
+{
+    "name": "Action"
+}
+
+### Get specific genre
+GET {{url}}/6994a5c5c0fb571093fde95a
+
+### Update a genre
+PUT {{url}}/6994a5c5c0fb571093fde95a
+Content-Type: {{contentType}}
+
+{
+  "name": "Sci-Fi"
+}
+
+### Delete a genre
+DELETE {{url}}/6994a5c5c0fb571093fde95a
